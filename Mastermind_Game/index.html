@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html>
+<head><meta http-equiv="refresh" content="30" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<title>Mastermind Web</title>
+<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}
+body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}
+.button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}
+.button-on {background-color: #1abc9c;width: 200px}
+.button-on:active {background-color: #16a085;}
+.button-off {background-color: #ff4133; display: inline; width: 200px; margin: 0 auto;}
+.button-off:active {background-color: #d00000;}
+.styled-table {border-collapse: collapse;margin: 50px auto 30px;font-size: 0.9em;font-family: sans-serif;min-width: 400px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);}
+.styled-table thead tr {background-color: #009879;color: #ffffff;text-align: center;}
+.styled-table th, .styled-table td {padding: 12px 15px;}
+.styled-table tbody tr {border-bottom: 1px solid #dddddd;}
+.styled-table tbody tr:nth-of-type(even) {background-color: #f3f3f3;}
+.styled-table tbody tr:last-of-type {border-bottom: 2px solid #009879;}
+.styled-table tbody tr.active-row {font-weight: bold;color: #009879;}
+.form body{display: flex;flex-wrap: wrap;align-items: center;margin: 50px auto 30px}
+.form input{border: none;background: hsl(0 0% 93%);border-radius: .25rem;padding: .75rem 1rem; }
+.submit{color: #009879;box-shadow: 0 .75rem .5rem -.5rem hsl(0 50% 80%);}
+p {font-size: 14px;color: #888;margin-bottom: 10px;}
+button-off:active {background-color: #d00000;}
+p {font-size: 14px;color: #888;margin-bottom: 10px;}
+</style>
+</head>
+<body>
+<h1> MASTERMIND WEB </h1>
+
+{% for match in matches %}
+<table class="styled-table">
+<thead><tr><th colspan="2">Room: {{match}}</th></tr></thead>
+<thead><tr>
+{% for player in matches[match] %}
+<th>{{player}}</th>
+{% endfor %}
+</tr></thead>
+<tbody>
+{% if matches[match]|length >1 %}
+{% set arr=[] %}
+{% for player in matches[match] %}
+{{ arr.append(player) }}
+{%endfor%}
+{% set user1=arr[0] %}
+{% set user2=arr[1] %}
+{% set len=0 %}
+{% if matches[match][user1].combos|length==matches[match][user2].combos|length%}
+{% set len=matches[match][user1].combos|length %}
+{% for i in range(0, len) %}
+<tr><td>{{ matches[match][user1].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user1].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user1].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user1].red[i]}} </span></td><td>{{ matches[match][user2].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user2].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user2].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user2].red[i]}} </span></td></tr>
+{%endfor%}
+{% elif matches[match][user1].combos|length>matches[match][user2].combos|length%}
+{% set len=matches[match][user2].combos|length %}
+{% for i in range(0, len) %}
+<tr><td> {{ matches[match][user1].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user1].green[i]}}</span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user1].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user1].red[i]}} </span></td><td> {{ matches[match][user2].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user2].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user2].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user2].red[i]}} </span></td></tr>
+{%endfor%}
+{% for i in range(len, matches[match][user1].combos|length) %}
+<tr><td>{{ matches[match][user1].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user1].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user1].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user1].red[i]}} </span></td><td></td></tr>
+{%endfor%}
+{% else %}
+{% set len=matches[match][user1].combos|length %}
+{% for i in range(0, len) %}
+<tr><td>{{ matches[match][user1].combos[i ]}} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user1].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user1].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user1].red[i]}} </span></td><td>{{ matches[match][user2].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user2].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user2].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user2].red[i]}} </span></td></tr>
+{%endfor%}
+{% for i in range(len, matches[match][user2].combos|length) %}
+<tr><td></td><td>{{ matches[match][user2].combos[i] }} <span class="w3-badge w3-tiny w3-green"> {{matches[match][user2].green[i]}} </span> <span class="w3-badge w3-tiny w3-yellow"> {{matches[match][user2].yellow[i]}} </span> <span class="w3-badge w3-tiny w3-red"> {{matches[match][user2].red[i]}} </span></td></tr>
+{%endfor%}
+{%endif%}
+{%endif%}
+</tbody>
+</table>
+{% endfor %}
+
+
+<form class="form" method='POST'><p><input type="text" placeholder="old_username" name='old_username'>&nbsp;
+  <input type="text" placeholder="new_username" name='new_username'>&nbsp;</p>
+  <p><input type="submit" value="Change username" class= "submit"></form></p>
+
+  </body>
+  </html>

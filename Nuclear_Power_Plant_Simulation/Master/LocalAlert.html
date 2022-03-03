@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5000/ -->
+<html><script src="chrome-extension://ljdobmomdgdljniojadhoplhkpialdid/page/prompt.js"></script><script src="chrome-extension://ljdobmomdgdljniojadhoplhkpialdid/page/runScript.js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="refresh" content="30" name="viewport">
+    <link rel="stylesheet" href="./LocalAlert_files/w3.css">
+<title>Assignment 2</title>
+<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}
+body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}
+.button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}
+.button-on {background-color: #1abc9c;width: 200px}
+.button-on:active {background-color: #16a085;}
+.button-off {background-color: #ff4133; display: inline; width: 200px; margin: 0 auto;}
+.button-off:active {background-color: #d00000;}
+.styled-table {border-collapse: collapse;margin: 50px auto 30px;font-size: 0.9em;font-family: sans-serif;min-width: 400px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);}
+.styled-table thead tr {background-color: #009879;color: #ffffff;text-align: center;}
+.styled-table th, .styled-table td {padding: 12px 15px;}
+.styled-table tbody tr {border-bottom: 1px solid #dddddd;}
+.styled-table tbody tr:nth-of-type(even) {background-color: #f3f3f3;}
+.styled-table tbody tr:last-of-type {border-bottom: 2px solid #009879;}
+.styled-table tbody tr.active-row {font-weight: bold;color: #009879;}
+.form body{display: flex;flex-wrap: wrap;align-items: center;margin: 50px auto 30px}
+.form input{border: none;background: hsl(0 0% 93%);border-radius: .25rem;padding: .75rem 1rem; }
+.submit{color: #009879;box-shadow: 0 .75rem .5rem -.5rem hsl(0 50% 80%);}
+p {font-size: 14px;color: #888;margin-bottom: 10px;}
+button-off:active {background-color: #d00000;}
+p {font-size: 14px;color: #888;margin-bottom: 10px;}
+</style>
+</head>
+<body>
+<h1> CONTROL CENTRE </h1>
+<table class="styled-table">
+<thead><tr><th colspan="4">Thresholds</th></tr></thead>
+<thead><tr><th>rssi_strenght</th><th>temperature</th><th>pressure</th><th>radioactivity</th></tr></thead>
+<tbody><tr><td> -20</td><td> 2000</td><td> 50</td><td> 15</td></tr>
+</tbody></table>
+<table class="styled-table">
+<thead><tr><th colspan="3">Nodes status</th></tr></thead>
+<thead><tr><th>Nodes</th><th>Role</th><th>Status</th></tr></thead>
+<tbody>
+
+<tr><td colspan="2">Full System</td><td><span class="w3-tag w3-teal">Activated</span></td></tr>
+
+
+
+<tr><td id=""> 8C:AA:B5:7C:40:06</td>
+<td>master</td>
+
+<td><span class="w3-tag w3-green">On</span></td>
+
+
+</tr><tr><td id=""> 40:F5:20:04:17:5F</td>
+<td>slave</td>
+
+<td><span class="w3-tag w3-yellow">Local Alert</span></td>
+
+
+
+</tr></tbody></table>
+
+  <form class="form" method="POST"><p><input type="number" placeholder="rssi_threshold" name="rssi_input">&nbsp;
+  <input type="number" placeholder="temperature_threshold" name="temperature_input">&nbsp;</p>
+  <p><input type="number" placeholder="pressure_threshold" name="pressure_input">&nbsp;
+  <input type="number" placeholder="radioactivity_threshold" name="radioactivity_input">&nbsp;</p>
+  <p><input type="submit" value="Change" class="submit"></p></form><p></p>
+
+
+<p>Nuclear Power Plant status: ON</p>
+
+<form method="POST">
+<input type="hidden" name="stop_alert">
+<input type="submit" value="Stop Alert" class="button button-off"></form>
+
+<p>
+</p><form method="POST">
+<input type="hidden" name="stop">
+<input type="submit" value="STOP" class="button button-off">
+</form><p></p>
+
+
+
+  
+  </body></html>
